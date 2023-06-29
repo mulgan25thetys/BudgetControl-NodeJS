@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api for budget control with node js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "budget",
+    "control",
+    "nodejs"
+  ],
+  "author": "thetysmulgan25@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.14.9"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
