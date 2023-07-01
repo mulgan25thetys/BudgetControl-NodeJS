@@ -1,0 +1,47 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api for budget control with node js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "sonar": "node sonar-project.js",
+    "lint:fix": "eslint --fix ./*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "test-reporter.xml",
+    "indent": 4
+  },
+  "keywords": [
+    "api",
+    "budget",
+    "control",
+    "nodejs"
+  ],
+  "author": "thetysmulgan25@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "eslint": "^8.43.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.14.9",
+    "sonarqube-scanner": "^3.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "country-to-currency": "^1.0.10",
+    "express": "^4.18.2",
+    "jw-paginate": "^1.0.4",
+    "mysql2": "^3.4.2",
+    "sequelize": "^6.32.1"
+  }
+}
