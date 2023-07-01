@@ -1,4 +1,4 @@
-const countries = [
+module.exports = [
   {
     "name": "Afghanistan",
     "iso2": "AF",
@@ -1280,5 +1280,3 @@ const countries = [
     "code": "263"
   }
 ]
-
-module.exports = countries;
