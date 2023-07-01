@@ -15,8 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 require('./src/config/database/database');
 
 app.get('/', (req, res) => {
+    
     res.status(200).send(`Welcome on ${process.env.SYSTEM_NAME} api!`)
 })
+
+app.use('/api/devises',require('./src/routes/deviseRoutes'))
+app.use('/api/capitals',require('./src/routes/capitalRoutes'))
 
 app.use('', (req, res) => {
     res.status(404).send('Sorry, the page that your are looking for is not found!')

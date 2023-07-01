@@ -22,7 +22,18 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Devise Region') }
             }
         },
+        default: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
+        },
     }, {
         timestamps: true
+    },{
+        sequelize,
+        paranoid: true,
+
+        // If you want to give a custom name to the deletedAt column
+        deletedAt: 'destroyTime'
     })
 }

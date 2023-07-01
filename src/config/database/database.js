@@ -19,6 +19,10 @@ const Operation = require('../../models/operation')(sequelize, DataTypes)
 const Files = require('../../models/files')(sequelize, DataTypes)
 
 //Association
+Devise.Capitals = Devise.hasMany(Capital, {
+    'onDelete': 'CASCADE',
+    'onUpdate': 'CASCADE'
+})
 Capital.Devise = Capital.belongsTo(Devise)
 
 Capital.Economies = Capital.hasMany(Economie, {
@@ -49,7 +53,7 @@ try {
             if (parseInt(process.env.INITIALIZE_DATA) == 1) {
                 sequelize.sync({ force: true }).then(() => {
                 console.log('Synchronization has been established successfully.');
-                    Devise.create({ currency: 'TND', region: 'Tunisia' }).then(devise => {
+                    Devise.create({ currency: 'TND',default: true, region: 'Tunisia' }).then(devise => {
                         console.log(devise.toJSON());
                         Capital.create({ amount: 0, DeviseId: devise.id }).then(capital => {
                             console.log(capital.toJSON());
