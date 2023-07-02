@@ -11,6 +11,10 @@ module.exports = async (req, res) => {
         }
         const defaultDevise = await Devise.findOne({ where: { default: true } }) // get the default devise for each operation
 
+        if (!defaultDevise) {
+            return res.status(400).json({ message: 'Please add a devise before proceeding or set a default one' })
+        }
+
         if (req.body.object) { // slugify the operation object
 
             req.body.object = require('../../config/utils/getRemoveSpecialCharRegex')(req.body.object)

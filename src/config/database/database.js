@@ -53,16 +53,16 @@ try {
             if (parseInt(process.env.INITIALIZE_DATA) == 1) {
                 sequelize.sync({ force: true }).then(() => {
                 console.log('Synchronization has been established successfully.');
-                    Devise.create({ currency: 'TND',default: true, region: 'Tunisia' }).then(devise => {
-                        console.log(devise.toJSON());
-                        Capital.create({ amount: 0, DeviseId: devise.id }).then(capital => {
-                            console.log(capital.toJSON());
-                        }).catch(err => {
-                            console.log(err);
-                        })
-                    }).catch(err => {
-                        console.log(err);
-                    })
+                    // Devise.create({ currency: 'TND',default: true, region: 'Tunisia' }).then(devise => {
+                    //     //console.log(devise.toJSON());
+                    //     // Capital.create({ amount: 0, DeviseId: devise.id, sign: 'nulle' }).then(capital => {
+                    //     //     console.log(capital.toJSON());
+                    //     // }).catch(err => {
+                    //     //     console.log(err);
+                    //     // })
+                    // }).catch(err => {
+                    //     console.log(err);
+                    // })
                     
                     unsetInitDatabase();
                 }).catch(err => {

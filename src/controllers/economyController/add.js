@@ -7,10 +7,16 @@ module.exports = async (req, res) => {
         return res.status(400).json({ message: require('../../config/utils/valueIsRequiredMsg')('economy amount') })
     }
 
-    const Capitals = await Capital.findAll({ order: [['updatedAt', 'DESC']], limit: 1 })
+    const Capitals = await Capital.findAll({ order: [['id', 'DESC']], limit: 1 })
     const lastCapital = Capitals[0] //get last Capital
+
+    if (!lastCapital) {
+        return res.status(400).json({message: 'Operation failed! no capital available.'})
+    }
+
+    const lastCapitalRealAmount = lastCapital.sign == 'negative' ? -lastCapital.amount : lastCapital.amount
     //check if a capital is exist and have greater amount than the new economu amount
-    if (lastCapital && lastCapital.amount > req.body.amount) {
+    if (lastCapital && lastCapitalRealAmount > req.body.amount) {
         req.body = { ...req.body, ...{ DeviseId: lastCapital.DeviseId } }
         try {
             const economy = await Economie.create(req.body)
