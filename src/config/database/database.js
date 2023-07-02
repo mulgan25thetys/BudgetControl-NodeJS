@@ -8,7 +8,7 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME.toString(), process.en
     process.env.DATABASE_PASSWORD.toString(), {
     host: process.env.HOST.toString(),
     dialect: 'mysql',
-    logging: (...msg) => console.log(msg),
+    logging: null,
 })
 
 //getting of data models
@@ -25,12 +25,12 @@ Devise.Capitals = Devise.hasMany(Capital, {
 })
 Capital.Devise = Capital.belongsTo(Devise)
 
-Capital.Economies = Capital.hasMany(Economie, {
+Devise.Economies = Devise.hasMany(Economie, {
     'onDelete': 'CASCADE',
     'onUpdate': 'CASCADE'
 })
 
-Economie.Capital = Economie.belongsTo(Capital)
+Economie.Devise = Economie.belongsTo(Devise)
 Devise.Operations = Devise.hasMany(Operation, {
     'onDelete': 'CASCADE',
     'onUpdate': 'CASCADE'

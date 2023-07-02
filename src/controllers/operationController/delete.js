@@ -11,8 +11,22 @@ module.exports = async (req, res) => {
     if (!deletedOperation) {
         return res.status(404).json({ message: require('../../config/utils/getNotFoundMessageOfModule')('operation'), data: deletedOperation })
     } else {
-        Operation.destroy({ where: { id: deletedOperation.id } }).then(() => {
-
+        try {
+            await Operation.destroy({ where: { id: deletedOperation.id } })
+            try {
+                switch (deletedOperation.category) {
+                    case 'receipt':
+                        await require('../capitalController/update')(-deletedOperation.amount)
+                        break;
+                    case 'expense':
+                        await require('../capitalController/update')(deletedOperation.amount)
+                        break;
+                    default:
+                        break;
+                }
+            } catch (err) {
+                require('../../config/utils/catchError')(res, err)
+            }
             if (deletedOperation.Files.length > 0) {
                 for (let i = 0; i < deletedOperation.Files.length; i++) {
                     const file = deletedOperation.Files[i];
@@ -26,8 +40,8 @@ module.exports = async (req, res) => {
                 }
             }
             return res.status(200).json({ message: require('../../config/utils/getDeleteMessage')('Operation: ' + deletedOperation.object + ' '), data: deletedOperation })
-        }).catch(err => {
+        }catch(err) {
             require('../../config/utils/catchError')(res, err)
-        })
+        }
     }
 }
