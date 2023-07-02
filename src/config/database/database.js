@@ -31,12 +31,12 @@ Capital.Economies = Capital.hasMany(Economie, {
 })
 
 Economie.Capital = Economie.belongsTo(Capital)
-Capital.Operations = Capital.hasMany(Operation, {
+Devise.Operations = Devise.hasMany(Operation, {
     'onDelete': 'CASCADE',
     'onUpdate': 'CASCADE'
 })
 
-Operation.Capital = Operation.belongsTo(Capital)
+Operation.Devise = Operation.belongsTo(Devise)
 Operation.Files = Operation.hasMany(Files, {
     'onDelete': 'CASCADE',
     'onUpdate': 'CASCADE'

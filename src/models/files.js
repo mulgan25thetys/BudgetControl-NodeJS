@@ -1,4 +1,4 @@
-const filesTypes = ['Image','Texte']
+const filesTypes = ['Image','Texte','Pdf']
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Files', {
         id: {

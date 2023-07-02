@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey:true
         },
+        dateOperation: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
         amount: {
             type: DataTypes.FLOAT,
             allowNull: false,
@@ -18,9 +22,19 @@ module.exports = (sequelize, DataTypes) => {
         object: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
-                notNull: { msg : require('../config/utils/valueIsRequiredMsg')('Operation Object')+' '+operationCategory.join(' or ')},
-                notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Operation Object')+' '+operationCategory.join(' or ') },
+                notNull: { msg : require('../config/utils/valueIsRequiredMsg')('Operation Object')},
+                notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Operation Object') },
+            }
+        },
+        slug: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                notNull: { msg : require('../config/utils/valueIsRequiredMsg')('Operation Slug')},
+                notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Operation Slug') },
             }
         },
         description: {
