@@ -22,18 +22,28 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Devise Region') }
             }
         },
+        iso2: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notNull: { msg : require('../config/utils/valueIsRequiredMsg')('Devise iso2')},
+                notEmpty: { msg: require('../config/utils/valueIsRequiredMsg')('Devise iso2') }
+            }
+        },
         default: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false
         },
     }, {
+        indexes: [
+            {
+                    name: 'unique_currency_region',
+                    unique: true,
+                    fields: ['currency', 'region']
+                }
+            ]
+        }, {
         timestamps: true
-    },{
-        sequelize,
-        paranoid: true,
-
-        // If you want to give a custom name to the deletedAt column
-        deletedAt: 'destroyTime'
     })
 }

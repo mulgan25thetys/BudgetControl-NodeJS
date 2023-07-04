@@ -13,10 +13,10 @@ module.exports = async (req, res) => {
             ]
             },
             include: [Devise],
-        order: [['updatedAt', 'DESC']]
+        order: [['id', 'DESC']]
     })
     } else {
-        datas = await Economie.findAll({ order: [['updatedAt', 'DESC']] })
+        datas = await Economie.findAll({ order: [['id', 'DESC']] })
     }
 
     require('../../config/utils/returnListOfDatas')(req, res, 'economie', datas, true)
