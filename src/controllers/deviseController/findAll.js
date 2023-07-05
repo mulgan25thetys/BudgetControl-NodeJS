@@ -13,10 +13,10 @@ module.exports = async (req, res) => {
                         { region: { [Op.like]: `%${value}%` } },
                     ]
                 },
-                order:  [['id','DESC']]
+                order:  [['updatedAt','DESC']]
             })
         } else {
-            devisesData = await Devise.findAll({ order:  [['id','DESC']]})
+            devisesData = await Devise.findAll({ order:  [['updatedAt','DESC']]})
         }
         require('../../config/utils/returnListOfDatas')(req, res, 'Devise', devisesData, true)
     } catch (error) {

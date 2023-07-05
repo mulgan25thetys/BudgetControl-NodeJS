@@ -9,6 +9,9 @@ module.exports = async (req, res) => {
         if (!req.body.category) { // check the operation category
             return res.status(400).json({ message: require('../../config/utils/valueIsRequiredMsg')("operation category") })
         }
+        if (!['receipt','expense'].includes(req.body.category)) { // check the operation category
+            return res.status(400).json({ message: 'The operation\'s category is invalid!' })
+        }
         const defaultDevise = await Devise.findOne({ where: { default: true } }) // get the default devise for each operation
 
         if (!defaultDevise) {

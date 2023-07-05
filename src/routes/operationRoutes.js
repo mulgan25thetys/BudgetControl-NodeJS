@@ -11,4 +11,6 @@ router.post('/files/:opid', require('../controllers/filesController/add'))
 
 router.delete('/files/:fileid', require('../controllers/filesController/delete'))
 
+router.get('/', require('../controllers/operationController/findAll'))
+
 module.exports = router

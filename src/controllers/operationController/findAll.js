@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         order: [['id', 'DESC']]
     })
     } else {
-        datas = await Operation.findAll({ order: [['id', 'DESC']] })
+        datas = await Operation.findAll({ order: [['id', 'DESC']], include: [Files, Devise] })
     }
 
     require('../../config/utils/returnListOfDatas')(req, res, 'operation', datas, true)
