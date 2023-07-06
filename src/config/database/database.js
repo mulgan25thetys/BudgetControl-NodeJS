@@ -14,7 +14,6 @@ const sequelize = new Sequelize(process.env.DATABASE_NAME.toString(), process.en
 //getting of data models
 const Devise = require('../../models/devise')(sequelize, DataTypes)
 const Capital = require('../../models/capital')(sequelize, DataTypes)
-const Economie = require('../../models/economie')(sequelize, DataTypes)
 const Operation = require('../../models/operation')(sequelize, DataTypes)
 const Files = require('../../models/files')(sequelize, DataTypes)
 
@@ -24,17 +23,6 @@ Devise.Capitals = Devise.hasMany(Capital, {
     'onUpdate': 'CASCADE'
 })
 Capital.Devise = Capital.belongsTo(Devise)
-
-Devise.Economies = Devise.hasMany(Economie, {
-    'onDelete': 'CASCADE',
-    'onUpdate': 'CASCADE'
-})
-
-Economie.Devise = Economie.belongsTo(Devise)
-Devise.Operations = Devise.hasMany(Operation, {
-    'onDelete': 'CASCADE',
-    'onUpdate': 'CASCADE'
-})
 
 Operation.Devise = Operation.belongsTo(Devise)
 Operation.Files = Operation.hasMany(Files, {
@@ -53,17 +41,6 @@ try {
             if (parseInt(process.env.INITIALIZE_DATA) == 1) {
                 sequelize.sync({ force: true }).then(() => {
                 console.log('Synchronization has been established successfully.');
-                    // Devise.create({ currency: 'TND',default: true, region: 'Tunisia' }).then(devise => {
-                    //     //console.log(devise.toJSON());
-                    //     // Capital.create({ amount: 0, DeviseId: devise.id, sign: 'nulle' }).then(capital => {
-                    //     //     console.log(capital.toJSON());
-                    //     // }).catch(err => {
-                    //     //     console.log(err);
-                    //     // })
-                    // }).catch(err => {
-                    //     console.log(err);
-                    // })
-                    
                     unsetInitDatabase();
                 }).catch(err => {
                     console.log(err);
@@ -88,4 +65,4 @@ function unsetInitDatabase () {
     })
 }
 
-module.exports = { sequelize, Devise, Capital, Economie, Operation, Files }
+module.exports = { sequelize, Devise, Capital, Operation, Files }

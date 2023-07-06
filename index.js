@@ -35,7 +35,6 @@ app.get('/system', (req, res) => {
 app.use('/api/devises',require('./src/routes/deviseRoutes'))
 app.use('/api/capitals', require('./src/routes/capitalRoutes'))
 app.use('/api/operations', require('./src/routes/operationRoutes'))
-app.use('/api/economies', require('./src/routes/economyRoutes'))
 
 app.use('', (req, res) => {
     res.status(404).send('Sorry, the page that your are looking for is not found!')

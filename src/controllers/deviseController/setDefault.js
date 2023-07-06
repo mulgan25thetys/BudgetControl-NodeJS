@@ -36,6 +36,5 @@ async function updateAllAmountWithNewDevise (deviseId, currency) {
     
     await require('../operationController/updateAllAmountToNewDevise')(deviseId, currency)
     await require('../capitalController/updateAllAmountToNewDevise')(deviseId, currency)
-    await require('../economyController/updateAllAmountToNewDevise')(deviseId, currency)
     
 }
