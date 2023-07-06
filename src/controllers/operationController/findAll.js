@@ -21,5 +21,5 @@ module.exports = async (req, res) => {
         datas = await Operation.findAll({ order: [['id', 'DESC']], include: [Files, Devise] })
     }
 
-    require('../../config/utils/returnListOfDatas')(req, res, 'operation', datas, req.query.data && req.query.data == 'yes' ? true : false)
+    require('../../config/utils/returnListOfDatas')(req, res, 'operation', datas, req.query.paginate && req.query.paginate == 'yes' ? true : false)
 }
