@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+router.get('/reports', require('../controllers/deviseController/getReportFile'))
+
 router.post('/new', require('../controllers/deviseController/create'))
 
 router.put('/:id', require('../controllers/deviseController/setDefault'))

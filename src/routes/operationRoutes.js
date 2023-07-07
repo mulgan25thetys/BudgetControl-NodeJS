@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+router.get('/reports', require('../controllers/operationController/getReportFile'))
+
 router.post('/', require('../controllers/operationController/add'))
 
 router.delete('/:id', require('../controllers/operationController/delete'))
